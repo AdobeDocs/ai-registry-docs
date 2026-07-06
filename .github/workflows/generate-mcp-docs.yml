@@ -1,0 +1,27 @@
+name: Generate MCP Server Docs
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 9 * * 1-5'  # 9 AM UTC, Mon–Fri
+
+permissions:
+  contents: write
+
+jobs:
+  generate-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Generate MCP server markdown files
+        run: deno run --allow-net --allow-write --allow-read scripts/generate-mcp-docs.ts
+
+      - uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: "chore: update MCP server docs"
+          file_pattern: mcp-servers/*.md
