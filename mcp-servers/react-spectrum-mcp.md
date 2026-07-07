@@ -1,3 +1,8 @@
+---
+title: "React Spectrum (S2) MCP"
+description: "AI-powered React Spectrum S2 documentation and design system tools. Browse component docs, search icons and illustrations, and look up style values—all from your IDE or chat app."
+---
+
 # React Spectrum (S2) MCP
 
 > AI-powered React Spectrum S2 documentation and design system tools. Browse component docs, search icons and illustrations, and look up style values—all from your IDE or chat app.

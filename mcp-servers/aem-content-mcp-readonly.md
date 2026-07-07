@@ -1,3 +1,8 @@
+---
+title: "AEM Content MCP Server (Read-Only)"
+description: "AI-powered read-only access to AEM as a Cloud Service. Browse pages, fragments, and launches from your IDE or chat app using natural language—no create, update, or delete operations."
+---
+
 # AEM Content MCP Server (Read-Only)
 
 > AI-powered read-only access to AEM as a Cloud Service. Browse pages, fragments, and launches from your IDE or chat app using natural language—no create, update, or delete operations.
@@ -9,7 +14,7 @@
 **Vendor:** Adobe
 **Owner:** GRP-AEM-MCP-OWNERS
 **Repository:** _N/A_
-**Updated:** 2026-07-06
+**Updated:** 2026-07-07
 
 ---
 

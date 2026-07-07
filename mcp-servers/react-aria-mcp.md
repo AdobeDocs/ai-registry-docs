@@ -1,3 +1,8 @@
+---
+title: "React Aria MCP"
+description: "AI-powered React Aria documentation tools. Browse component docs and primitives directly from your IDE or chat app."
+---
+
 # React Aria MCP
 
 > AI-powered React Aria documentation tools. Browse component docs and primitives directly from your IDE or chat app.

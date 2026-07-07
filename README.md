@@ -20,4 +20,4 @@ mcp-servers/
 
 `index.md` lists every server, sorted alphabetically by title, with a link to its markdown file and a short summary.
 
-Each server file contains: About, MCP Capabilities (Tools + Prompts), Installation Steps, Accessing the MCP Server, Documentation, and Support.
+Each server file starts with a YAML front matter block (`title` + `description`), followed by: About, MCP Capabilities (Tools + Prompts), Installation Steps, Accessing the MCP Server, Documentation, and Support.

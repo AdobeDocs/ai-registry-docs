@@ -1,3 +1,7 @@
+---
+title: "AI Registry MCP Servers"
+---
+
 # MCP Servers
 
 This page lists every MCP (Model Context Protocol) server available in the Adobe MCP Registry, with a short summary of what each one does.

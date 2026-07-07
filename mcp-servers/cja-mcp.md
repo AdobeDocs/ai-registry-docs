@@ -1,3 +1,8 @@
+---
+title: "Customer Journey Analytics MCP Server"
+description: "AI-powered access to Customer Journey Analytics (CJA). Discover data views, dimensions, metrics, segments, audiences, and run reports from your IDE or chat app using natural language."
+---
+
 # Customer Journey Analytics MCP Server
 
 > AI-powered access to Customer Journey Analytics (CJA). Discover data views, dimensions, metrics, segments, audiences, and run reports from your IDE or chat app using natural language.

@@ -1,3 +1,8 @@
+---
+title: "Adobe Express Developer MCP Server"
+description: "Accelerate your Adobe Express Add-on development workflow through Model Context Protocol(MCP) that seamlessly integrates with any AI-powered IDEs."
+---
+
 # Adobe Express Developer MCP Server
 
 > Accelerate your Adobe Express Add-on development workflow through Model Context Protocol(MCP) that seamlessly integrates with any AI-powered IDEs.

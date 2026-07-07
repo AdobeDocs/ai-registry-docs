@@ -1,3 +1,8 @@
+---
+title: "Adobe Analytics MCP Server"
+description: "AI-powered access to Adobe Analytics. Discover report suites, dimensions, metrics, segments, and run reports from your IDE or chat app using natural language."
+---
+
 # Adobe Analytics MCP Server
 
 > AI-powered access to Adobe Analytics. Discover report suites, dimensions, metrics, segments, and run reports from your IDE or chat app using natural language.

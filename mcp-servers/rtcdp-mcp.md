@@ -1,3 +1,8 @@
+---
+title: "Adobe Real-Time CDP MCP Server"
+description: "Exposes Adobe Real-Time CDP capabilities as MCP tools for AI Agents."
+---
+
 # Adobe Real-Time CDP MCP Server
 
 > Exposes Adobe Real-Time CDP capabilities as MCP tools for AI Agents.

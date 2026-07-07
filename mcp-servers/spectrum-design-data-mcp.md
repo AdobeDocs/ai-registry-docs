@@ -1,3 +1,8 @@
+---
+title: "Spectrum Design Data MCP Server"
+description: "A Model Context Protocol (MCP) server that provides AI tools with structured access to Adobe Spectrum design system data, including design tokens and component API schemas."
+---
+
 # Spectrum Design Data MCP Server
 
 > A Model Context Protocol (MCP) server that provides AI tools with structured access to Adobe Spectrum design system data, including design tokens and component API schemas.

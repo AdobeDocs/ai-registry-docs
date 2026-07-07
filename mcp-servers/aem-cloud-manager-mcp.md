@@ -1,3 +1,8 @@
+---
+title: "AEM Cloud Manager MCP Server"
+description: "Manage Cloud Manager programs, environments, pipelines, and repositories from your IDE. Run pipelines, debug failures, and access Cloud Manager tools via natural language—no context switching."
+---
+
 # AEM Cloud Manager MCP Server
 
 > Manage Cloud Manager programs, environments, pipelines, and repositories from your IDE. Run pipelines, debug failures, and access Cloud Manager tools via natural language—no context switching.
@@ -9,7 +14,7 @@
 **Vendor:** Adobe
 **Owner:** GRP-AEM-MCP-OWNERS
 **Repository:** _N/A_
-**Updated:** 2026-07-06
+**Updated:** 2026-07-07
 
 ---
 

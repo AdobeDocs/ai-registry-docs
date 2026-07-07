@@ -1,3 +1,8 @@
+---
+title: "Adobe Journey Optimizer MCP Server"
+description: "This MCP server exposes Adobe Journey Optimizer (AJO) tools to AI clients, letting marketers manage campaigns, journeys, audiences, and messages through agents."
+---
+
 # Adobe Journey Optimizer MCP Server
 
 > This MCP server exposes Adobe Journey Optimizer (AJO) tools to AI clients, letting marketers manage campaigns, journeys, audiences, and messages through agents.

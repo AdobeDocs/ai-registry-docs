@@ -1,3 +1,8 @@
+---
+title: "AEM Content MCP Server"
+description: "AI-powered content operations for AEM as a Cloud Service. Manage pages and fragments from your IDE or chat app using natural language."
+---
+
 # AEM Content MCP Server
 
 > AI-powered content operations for AEM as a Cloud Service. Manage pages and fragments from your IDE or chat app using natural language.
@@ -9,7 +14,7 @@
 **Vendor:** Adobe
 **Owner:** GRP-AEM-MCP-OWNERS
 **Repository:** _N/A_
-**Updated:** 2026-07-06
+**Updated:** 2026-07-07
 
 ---
 

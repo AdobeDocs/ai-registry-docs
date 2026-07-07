@@ -59,11 +59,24 @@ function promptsTable(prompts: Prompt[]): string {
   ].join("\n");
 }
 
+function yamlString(value: string): string {
+  return `"${value.replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`;
+}
+
 function toMarkdown(s: ServerDetails): string {
   const mode = s.deployment_mode?.[0];
   const cap = mode === "remote" ? s.remotes?.[0] : s.packages?.[0];
   const tools = cap?.tools ?? [];
   const prompts = cap?.prompts ?? [];
+
+  const title = s.title || s.name;
+  const description = s.summary || "No summary available.";
+  const frontMatter = `---
+title: ${yamlString(title)}
+description: ${yamlString(description)}
+---
+
+`;
 
   const owners = s.owner?.join(", ") || "_Unknown_";
   const tags = s.tags?.length ? s.tags.map((t) => `\`${t}\``).join(", ") : "_None_";
@@ -79,7 +92,7 @@ function toMarkdown(s: ServerDetails): string {
     ? new Date(s.updated_at).toISOString().split("T")[0]
     : "N/A";
 
-  return `# ${s.title || s.name}
+  return `${frontMatter}# ${title}
 
 > ${s.summary || "_No summary available._"}
 
@@ -141,7 +154,11 @@ function toIndex(entries: { name: string; title: string; summary: string }[]): s
   const links = sorted
     .map((e) => `- [${e.title}](./${e.name}.md) — ${e.summary}`)
     .join("\n");
-  return `# MCP Servers
+  return `---
+title: ${yamlString("AI Registry MCP Servers")}
+---
+
+# MCP Servers
 
 This page lists every MCP (Model Context Protocol) server available in the Adobe MCP Registry, with a short summary of what each one does.
 

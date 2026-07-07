@@ -1,3 +1,8 @@
+---
+title: "Adobe Commerce App Builder MCP"
+description: "The Adobe Commerce App Builder MCP enables AI-powered workflows for App Builder by integrating coding tools that convert natural language into Adobe App Builder apps."
+---
+
 # Adobe Commerce App Builder MCP
 
 > The Adobe Commerce App Builder MCP enables AI-powered workflows for App Builder by integrating coding tools that convert natural language into Adobe App Builder apps.
