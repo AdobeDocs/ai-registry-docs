@@ -136,6 +136,19 @@ ${s.support_contact || "_No support contact provided._"}
 `;
 }
 
+function toIndex(entries: { name: string; title: string; summary: string }[]): string {
+  const sorted = [...entries].sort((a, b) => a.title.localeCompare(b.title));
+  const links = sorted
+    .map((e) => `- [${e.title}](./${e.name}.md) — ${e.summary}`)
+    .join("\n");
+  return `# MCP Servers
+
+This page lists every MCP (Model Context Protocol) server available in the Adobe MCP Registry, with a short summary of what each one does.
+
+${links}
+`;
+}
+
 async function main() {
   const listRes = await fetch(`${API_BASE}/servers?limit=100`, {
     headers: { Accept: "application/json" },
@@ -147,6 +160,8 @@ async function main() {
 
   console.log(`Found ${servers.length} MCP servers`);
   await Deno.mkdir(OUTPUT_DIR, { recursive: true });
+
+  const indexEntries: { name: string; title: string; summary: string }[] = [];
 
   for (const server of servers) {
     const { name } = server;
@@ -165,7 +180,17 @@ async function main() {
     const path = `${OUTPUT_DIR}/${name}.md`;
     await Deno.writeTextFile(path, toMarkdown(details));
     console.log(`  Written: ${path}`);
+
+    indexEntries.push({
+      name,
+      title: details.title || details.name,
+      summary: details.summary || "_No summary available._",
+    });
   }
+
+  const indexPath = `${OUTPUT_DIR}/index.md`;
+  await Deno.writeTextFile(indexPath, toIndex(indexEntries));
+  console.log(`  Written: ${indexPath}`);
 
   console.log("Done.");
 }

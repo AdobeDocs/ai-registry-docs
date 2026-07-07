@@ -12,9 +12,12 @@ You can also trigger it manually via **Actions → Generate MCP Server Docs → 
 
 ```
 mcp-servers/
+  index.md
   aem-content-mcp.md
   adobe-analytics-mcp.md
   ...
 ```
 
-Each file contains: About, MCP Capabilities (Tools + Prompts), Installation Steps, Accessing the MCP Server, Documentation, and Support.
+`index.md` lists every server, sorted alphabetically by title, with a link to its markdown file and a short summary.
+
+Each server file contains: About, MCP Capabilities (Tools + Prompts), Installation Steps, Accessing the MCP Server, Documentation, and Support.
