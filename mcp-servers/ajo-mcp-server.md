@@ -14,7 +14,7 @@ description: "This MCP server exposes Adobe Journey Optimizer (AJO) tools to AI 
 **Vendor:** Adobe
 **Owner:** org-snikhil-all
 **Repository:** [https://github.com/Adobe-CJM/ajo-mcp-service](https://github.com/Adobe-CJM/ajo-mcp-service)
-**Updated:** 2026-07-06
+**Updated:** 2026-07-07
 
 ---
 
@@ -49,7 +49,14 @@ rather than paginating through thousands of campaigns.
 Field projection: default returns id, name, status, campaignType, startDate, endDate.
 Pass fields=['minimal'] for id/name/status only; fields=['detail'] adds description,
 tags, and message variants. |
-| `ajo_campaign_get` | Get details and configuration of a specific AJO campaign by campaign ID. |
+| `ajo_campaign_get` | Get details and configuration of a specific AJO campaign by campaign ID.
+
+Requires the sandbox that contains the campaign. A campaign exists in exactly
+one sandbox, so the sandbox must be correct. If the user has not said which
+sandbox, call ajo_sandbox_list and confirm the sandbox with them first — do
+not call this tool repeatedly against different sandboxes to hunt for the
+campaign. If the campaign is not in the given sandbox, this returns a structured
+result with found=false (not an error) telling you to check another sandbox. |
 | `ajo_journey_list` | List AJO customer journeys (automated flows/workflows).
 
 Status filter: the journey API does not support server-side status filtering.
@@ -75,19 +82,6 @@ challenges — NOT ajo_campaign_list.
 
 Returns challenges where state is published, startDate <= now,
 and endDate > now. Use the limit parameter to control result count. |
-| `ajo_channel_configuration_list` | List AJO channel configurations (surface presets / branding settings).
-
-Supported server-side filters (all optional, combinable):
-  name, status, channel, message_type, email_message_type, ip_pool_id, subdomain,
-  tag_id, seedlist_id, preset_type, target_ms_schema_id, target_id,
-  secondary_destination_schema, has_email, has_push, has_sms, has_whats_app,
-  has_direct_mail, email_domains_not_exists.
-
-Date/time ranges and free-text name search (name is exact-match only) are not supported.
-
-Pagination response fields: count, has_more, next_href (total is usually 0 — API does
-not return it). Pass next_href as pagination.next_href to fetch the next page. |
-| `ajo_channel_configuration_get` | Get full details of a single AJO channel configuration (surface preset) by ID. |
 | `ajo_sandbox_list` | List AEP sandboxes available to the current org.
 
 Results are cached for 5 minutes per org. |
@@ -98,7 +92,8 @@ presenting aggregated/comparative data (e.g. counts by status, trends
 over time, distributions). Do NOT use for single-item detail views —
 present those as structured text instead.
 
-All chart types support: title (required), description, badge.
+All chart types support: title (required), description, badge —
+EXCEPT "metric" (no title, use label) and "data_dashboard" (no title at all).
 badge fields: label (str), variant — MUST be exactly one of "positive"|"negative"|"info"|"neutral".
   DO NOT use "success", "warning", "error", "danger", or any other string — validation will fail.
 series fields: label (str), data (list[float|None]), color (hex str, optional).
@@ -125,6 +120,7 @@ Chart types and their EXACT valid fields:
 "table"          — title, columns (list of {label, key}), rows (list of {cells: {key: value}})
 "data_dashboard" — description (optional), metrics (list of MetricCard),
                    charts (list of ChartItem), table (DataTable|null)
+                   NOT title — data_dashboard has no title field
 
 REQUIRED: every chart object MUST include the "type" field — including
 "data_dashboard". Omitting "type" causes a discriminator validation error.
@@ -168,6 +164,11 @@ and returns an openable Journey Optimizer deep link. |
 | `skill__list_campaigns` | List, browse, and preview AJO campaigns. Use when asked to list, show, browse, or view the contents of email campaigns. |
 | `skill__list_journeys` | List, browse, inspect, or get details about AJO journeys — including showing a journey's flow diagram. Use when asked to list, show, browse, view, get, open, or visualize any journey. |
 | `skill__tool_reference` | Start here before any AJO workflow. Enforces Rule 0 — read the relevant skill doc before calling any tool. |
+| `channels__list-channel-configs` | List channel configurations with optional filters (name, status, channels, sandboxName) to return a unified list from both backend APIs, setting channels for specified types and returning the total count from _count for count questions. |
+| `channels__get-channel-config` | Fetch a single channel configuration by its required configId UUID and optional sandboxName by automatically searching both endpoints to return full details including name, channel type, settings, status, and metadata. |
+| `channels__list-config-resource` | Lists channel configuration resources by resource type with optional filters. Returns matching resources with a count. Inputs: resourceType (required) — one of pushCredential, emailSubdomain, emailIpPool, smsCredential, smsSubdomain, whatsappCredential, directMailFileRouting, lineChannelSettings, liveActivityRegistry. Optional filters: name (contains match), platform/messagingService/appId (pushCredential only), status (smsSubdomain|whatsappCredential|directMailFileRouting), sandboxName. Returned ids feed channel configs (e.g. emailSubdomain→email.subDomainId, smsCredential→sms.configId); lineChannelSettings and liveActivityRegistry also return channelRegistryId and channelPublicationVersion. |
+| `channels__get-config-resource` | Fetch a single configuration resource by its ID and required resourceType (plus optional sandboxName) to return full resource details (or _etag), excluding liveActivityRegistry which lacks get-by-id, while including channelRegistryId and channelPublicationVersion for lineChannelSettings. |
+| `channels__list-marketing-actions` | List available DULE marketing actions for a given sandboxName (optional), where each action provides a name and a self href link used to determine its type as core or custom based on the path structure. |
 
 ### Prompts
 
