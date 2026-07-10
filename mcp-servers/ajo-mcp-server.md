@@ -14,7 +14,7 @@ description: "This MCP server exposes Adobe Journey Optimizer (AJO) tools to AI 
 **Vendor:** Adobe
 **Owner:** org-snikhil-all
 **Repository:** [https://github.com/Adobe-CJM/ajo-mcp-service](https://github.com/Adobe-CJM/ajo-mcp-service)
-**Updated:** 2026-07-07
+**Updated:** 2026-07-09
 
 ---
 
@@ -49,14 +49,7 @@ rather than paginating through thousands of campaigns.
 Field projection: default returns id, name, status, campaignType, startDate, endDate.
 Pass fields=['minimal'] for id/name/status only; fields=['detail'] adds description,
 tags, and message variants. |
-| `ajo_campaign_get` | Get details and configuration of a specific AJO campaign by campaign ID.
-
-Requires the sandbox that contains the campaign. A campaign exists in exactly
-one sandbox, so the sandbox must be correct. If the user has not said which
-sandbox, call ajo_sandbox_list and confirm the sandbox with them first — do
-not call this tool repeatedly against different sandboxes to hunt for the
-campaign. If the campaign is not in the given sandbox, this returns a structured
-result with found=false (not an error) telling you to check another sandbox. |
+| `ajo_campaign_get` | Get details and configuration of a specific AJO campaign by campaign ID. |
 | `ajo_journey_list` | List AJO customer journeys (automated flows/workflows).
 
 Status filter: the journey API does not support server-side status filtering.
@@ -92,8 +85,7 @@ presenting aggregated/comparative data (e.g. counts by status, trends
 over time, distributions). Do NOT use for single-item detail views —
 present those as structured text instead.
 
-All chart types support: title (required), description, badge —
-EXCEPT "metric" (no title, use label) and "data_dashboard" (no title at all).
+All chart types support: title (required), description, badge.
 badge fields: label (str), variant — MUST be exactly one of "positive"|"negative"|"info"|"neutral".
   DO NOT use "success", "warning", "error", "danger", or any other string — validation will fail.
 series fields: label (str), data (list[float|None]), color (hex str, optional).
@@ -120,7 +112,6 @@ Chart types and their EXACT valid fields:
 "table"          — title, columns (list of {label, key}), rows (list of {cells: {key: value}})
 "data_dashboard" — description (optional), metrics (list of MetricCard),
                    charts (list of ChartItem), table (DataTable|null)
-                   NOT title — data_dashboard has no title field
 
 REQUIRED: every chart object MUST include the "type" field — including
 "data_dashboard". Omitting "type" causes a discriminator validation error.
