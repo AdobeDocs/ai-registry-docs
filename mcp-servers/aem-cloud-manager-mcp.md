@@ -14,7 +14,7 @@ description: "Manage Cloud Manager programs, environments, pipelines, and reposi
 **Vendor:** Adobe
 **Owner:** GRP-AEM-MCP-OWNERS
 **Repository:** _N/A_
-**Updated:** 2026-07-10
+**Updated:** 2026-07-12
 
 ---
 
