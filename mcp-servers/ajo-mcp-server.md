@@ -14,7 +14,7 @@ description: "This MCP server exposes Adobe Journey Optimizer (AJO) tools to AI 
 **Vendor:** Adobe
 **Owner:** org-snikhil-all
 **Repository:** [https://github.com/Adobe-CJM/ajo-mcp-service](https://github.com/Adobe-CJM/ajo-mcp-service)
-**Updated:** 2026-07-09
+**Updated:** 2026-07-13
 
 ---
 
