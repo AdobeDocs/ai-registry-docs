@@ -14,7 +14,7 @@ description: "This MCP server exposes Adobe Journey Optimizer (AJO) tools to AI 
 **Vendor:** Adobe
 **Owner:** org-snikhil-all
 **Repository:** [https://github.com/Adobe-CJM/ajo-mcp-service](https://github.com/Adobe-CJM/ajo-mcp-service)
-**Updated:** 2026-07-13
+**Updated:** 2026-07-14
 
 ---
 
@@ -43,13 +43,20 @@ Supported server-side filters (all optional, combinable):
 
 Date ranges, name search, audience filters, and tags are not supported.
 
-Returns the first page (up to 50 by default, max 200). Use filters to narrow results
+Returns the first page (up to 20 by default, max 100). Use filters to narrow results
 rather than paginating through thousands of campaigns.
 
 Field projection: default returns id, name, status, campaignType, startDate, endDate.
 Pass fields=['minimal'] for id/name/status only; fields=['detail'] adds description,
 tags, and message variants. |
-| `ajo_campaign_get` | Get details and configuration of a specific AJO campaign by campaign ID. |
+| `ajo_campaign_get` | Get details and configuration of a specific AJO campaign by campaign ID.
+
+Requires the sandbox that contains the campaign. A campaign exists in exactly
+one sandbox, so the sandbox must be correct. If the user has not said which
+sandbox, call ajo_sandbox_list and confirm the sandbox with them first — do
+not call this tool repeatedly against different sandboxes to hunt for the
+campaign. If the campaign is not in the given sandbox, this returns a structured
+result with found=false (not an error) telling you to check another sandbox. |
 | `ajo_journey_list` | List AJO customer journeys (automated flows/workflows).
 
 Status filter: the journey API does not support server-side status filtering.
@@ -66,7 +73,7 @@ Pagination contract — response always includes:
   next_offset — pass as offset on the next call; null when has_more=false
 
 To collect ALL journeys: call with offset=0, then loop while has_more=true,
-passing next_offset as offset each time. Default page size is 50; max is 200. |
+passing next_offset as offset each time. Default page size is 20; max is 100. |
 | `ajo_journey_get` | Get configuration, details, and current status of a specific AJO journey. |
 | `ajo_loyalty_get_challenges` | List (get/fetch) active loyalty program challenges (tasks, promotions, offers).
 
@@ -85,7 +92,8 @@ presenting aggregated/comparative data (e.g. counts by status, trends
 over time, distributions). Do NOT use for single-item detail views —
 present those as structured text instead.
 
-All chart types support: title (required), description, badge.
+All chart types support: title (required), description, badge —
+EXCEPT "metric" (no title, use label) and "data_dashboard" (no title at all).
 badge fields: label (str), variant — MUST be exactly one of "positive"|"negative"|"info"|"neutral".
   DO NOT use "success", "warning", "error", "danger", or any other string — validation will fail.
 series fields: label (str), data (list[float|None]), color (hex str, optional).
@@ -112,6 +120,7 @@ Chart types and their EXACT valid fields:
 "table"          — title, columns (list of {label, key}), rows (list of {cells: {key: value}})
 "data_dashboard" — description (optional), metrics (list of MetricCard),
                    charts (list of ChartItem), table (DataTable|null)
+                   NOT title — data_dashboard has no title field
 
 REQUIRED: every chart object MUST include the "type" field — including
 "data_dashboard". Omitting "type" causes a discriminator validation error.
@@ -151,7 +160,6 @@ in the same graph. Call once per graph; each call renders one panel. |
 The URL must point to a self-contained HTML email bundle (images and styles
 inlined). The server fetches the HTML, creates an AJO email content template,
 and returns an openable Journey Optimizer deep link. |
-| `skill__cja_analytics` | Run CJA analytics reports — find metrics, dimensions, segments, and data views, then run ranked or breakdown reports. Use when asked to analyse data, run a report, find metrics, explore CJA data, or get reporting for a campaign. |
 | `skill__list_campaigns` | List, browse, and preview AJO campaigns. Use when asked to list, show, browse, or view the contents of email campaigns. |
 | `skill__list_journeys` | List, browse, inspect, or get details about AJO journeys — including showing a journey's flow diagram. Use when asked to list, show, browse, view, get, open, or visualize any journey. |
 | `skill__tool_reference` | Start here before any AJO workflow. Enforces Rule 0 — read the relevant skill doc before calling any tool. |
@@ -160,6 +168,10 @@ and returns an openable Journey Optimizer deep link. |
 | `channels__list-config-resource` | Lists channel configuration resources by resource type with optional filters. Returns matching resources with a count. Inputs: resourceType (required) — one of pushCredential, emailSubdomain, emailIpPool, smsCredential, smsSubdomain, whatsappCredential, directMailFileRouting, lineChannelSettings, liveActivityRegistry. Optional filters: name (contains match), platform/messagingService/appId (pushCredential only), status (smsSubdomain|whatsappCredential|directMailFileRouting), sandboxName. Returned ids feed channel configs (e.g. emailSubdomain→email.subDomainId, smsCredential→sms.configId); lineChannelSettings and liveActivityRegistry also return channelRegistryId and channelPublicationVersion. |
 | `channels__get-config-resource` | Fetch a single configuration resource by its ID and required resourceType (plus optional sandboxName) to return full resource details (or _etag), excluding liveActivityRegistry which lacks get-by-id, while including channelRegistryId and channelPublicationVersion for lineChannelSettings. |
 | `channels__list-marketing-actions` | List available DULE marketing actions for a given sandboxName (optional), where each action provides a name and a self href link used to determine its type as core or custom based on the path structure. |
+| `content__list_content_templates` | List AJO content templates with pagination and optional property filters (templateType, channels, name, dates). Returns stringified JSON with items and pagination links. |
+| `content__get_content_template` | Fetch a single AJO content template by UUID, including embedded variant content (template body and referenced fragments). |
+| `content__list_fragments` | List AJO content fragments with pagination and optional property filters (fragmentType, channels, name, dates). Returns stringified JSON with items and pagination links. |
+| `content__get_fragment` | Fetch a single AJO content fragment by UUID with embedded variant content. Optional status filter (DRAFT or PUBLISHED). |
 
 ### Prompts
 
