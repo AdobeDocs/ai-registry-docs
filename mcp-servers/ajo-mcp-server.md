@@ -14,7 +14,7 @@ description: "This MCP server exposes Adobe Journey Optimizer (AJO) tools to AI 
 **Vendor:** Adobe
 **Owner:** org-snikhil-all
 **Repository:** [https://github.com/Adobe-CJM/ajo-mcp-service](https://github.com/Adobe-CJM/ajo-mcp-service)
-**Updated:** 2026-07-14
+**Updated:** 2026-07-15
 
 ---
 
@@ -75,13 +75,6 @@ Pagination contract — response always includes:
 To collect ALL journeys: call with offset=0, then loop while has_more=true,
 passing next_offset as offset each time. Default page size is 20; max is 100. |
 | `ajo_journey_get` | Get configuration, details, and current status of a specific AJO journey. |
-| `ajo_loyalty_get_challenges` | List (get/fetch) active loyalty program challenges (tasks, promotions, offers).
-
-Returns challenges that are currently published and running. Use this for loyalty
-challenges — NOT ajo_campaign_list.
-
-Returns challenges where state is published, startDate <= now,
-and endDate > now. Use the limit parameter to control result count. |
 | `ajo_sandbox_list` | List AEP sandboxes available to the current org.
 
 Results are cached for 5 minutes per org. |
@@ -172,6 +165,11 @@ and returns an openable Journey Optimizer deep link. |
 | `content__get_content_template` | Fetch a single AJO content template by UUID, including embedded variant content (template body and referenced fragments). |
 | `content__list_fragments` | List AJO content fragments with pagination and optional property filters (fragmentType, channels, name, dates). Returns stringified JSON with items and pagination links. |
 | `content__get_fragment` | Fetch a single AJO content fragment by UUID with embedded variant content. Optional status filter (DRAFT or PUBLISHED). |
+| `content__get_campaign_content` | Fetch one campaign-backed AJO inline message by UUID with embedded per-channel variant content. |
+| `content__update_campaign_content` | Replace one channel variant on a campaign-backed AJO inline message (draft only). Requires campaignId, messageId, channel, variantId, and full variant object from get_campaign_content. |
+| `content__list_landing_pages` | List AJO landing pages with pagination and optional property filters. Returns stringified JSON with items and pagination links. |
+| `content__get_landing_page` | Fetch one AJO landing page structure by UUID (metadata and page ids; no rendered HTML). |
+| `content__get_landing_page_content` | Fetch rendered HTML content for one landing page primary or sub page by page UUID. |
 
 ### Prompts
 

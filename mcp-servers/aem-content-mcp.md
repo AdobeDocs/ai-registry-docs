@@ -14,7 +14,7 @@ description: "AI-powered content operations for AEM as a Cloud Service. Manage p
 **Vendor:** Adobe
 **Owner:** GRP-AEM-MCP-OWNERS
 **Repository:** _N/A_
-**Updated:** 2026-07-15
+**Updated:** 2026-07-16
 
 ---
 
