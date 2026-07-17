@@ -15,6 +15,7 @@ This page lists every MCP (Model Context Protocol) server available in the Adobe
 - [AEM Content MCP Server](./aem-content-mcp.md) — AI-powered content operations for AEM as a Cloud Service. Manage pages and fragments from your IDE or chat app using natural language.
 - [AEM Content MCP Server (Read-Only)](./aem-content-mcp-readonly.md) — AI-powered read-only access to AEM as a Cloud Service. Browse pages, fragments, and launches from your IDE or chat app using natural language—no create, update, or delete operations.
 - [Customer Journey Analytics MCP Server](./cja-mcp.md) — AI-powered access to Customer Journey Analytics (CJA). Discover data views, dimensions, metrics, segments, audiences, and run reports from your IDE or chat app using natural language.
+- [Firefly Creative Production MCP Server](./run-workflow.md) — MCP server exposing Adobe creative production workflow capabilities to LLMs via natural language.
 - [React Aria MCP](./react-aria-mcp.md) — AI-powered React Aria documentation tools. Browse component docs and primitives directly from your IDE or chat app.
 - [React Spectrum (S2) MCP](./react-spectrum-mcp.md) — AI-powered React Spectrum S2 documentation and design system tools. Browse component docs, search icons and illustrations, and look up style values—all from your IDE or chat app.
 - [Spectrum Design Data MCP Server](./spectrum-design-data-mcp.md) — A Model Context Protocol (MCP) server that provides AI tools with structured access to Adobe Spectrum design system data, including design tokens and component API schemas.
