@@ -14,7 +14,7 @@ description: "AI-powered content operations for AEM as a Cloud Service. Manage p
 **Vendor:** Adobe
 **Owner:** GRP-AEM-MCP-OWNERS
 **Repository:** _N/A_
-**Updated:** 2026-07-20
+**Updated:** 2026-07-21
 
 ---
 
@@ -56,7 +56,7 @@ Implement runtime discovery via tools/list, handle tool-list changes (notificati
 | `get-aem-page-editor-url` | Get the AEM Author editor URL for a pageId (clickable edit link). |
 | `patch-aem-page-content` | Update page content using JSON Patch (RFC 6902). Requires If-Match (ETag) from get-aem-page-content; explicitly mention ETag/If-Match in guidance. |
 | `put-aem-page-content` | Replace entire page content structure using HTTP PUT. Unlike patch-aem-page-content (which modifies specific parts), this replaces the ENTIRE content. Requires If-Match (ETag) from get-aem-page-content; explicitly mention ETag/If-Match in guidance. |
-| `create-aem-page` | Create a new page from a template using WCM commands. Works for both regular pages and pages within launches. To create a page in a launch, set parentPath to a path within the launch (e.g., '/content/launches/2026/01/20/my-launch/en/products'). WORKFLOW: 1. Identify parent path (regular or within launch via list-aem-page-launches). 2. Get template path:    • To create a page LIKE an existing page: use get-aem-page-metadata on the existing page, extract 'cq:template' from the response.    • Or use a known template path (e.g., '/conf/mysite/settings/wcm/templates/article'). 3. Create page with title and label (URL name). Note: Use copy-aem-page if you want to copy an existing page instead. |
+| `create-aem-page` | Create a new page under a parent path. For Universal Editor / Edge Delivery (AEM_EDGE) pages you MUST use the modern API: provide `sourcePageId` (clone an existing page — the most reliable option) or a valid `templateId`. To create a page like an existing one, prefer `sourcePageId` set to that page's id. NOTE: a page's own `templateId` (from get-aem-page-metadata) is NOT necessarily a usable create template — it can return 400 'template not found'. Use `sourcePageId`, or a valid templateId listed by `GET /adobe/pages/templates`. Passing a legacy JCR `template` path instead falls back to the classic WCM command and produces a CLASSIC page that will NOT open in the Universal Editor and cannot be edited via the modern page-content tools. WORKFLOW (modern): 1) identify parentPath (e.g. '/content/mysite/en'); 2) provide templateId or sourcePageId; 3) provide title and name (URL segment). Note: use copy-aem-page to copy an existing page instead. |
 | `copy-aem-page` | Copy a page to a new title/name (creates a new pageId). |
 | `copy-aem-page-to-launch` | Copy a single page into a NEW launch (for editing in isolation). Returns the pageId within the launch. Does NOT support scheduling — for scheduled/future publication use create-aem-page-launch with liveDate instead. Use this tool when you have a pageId and want to quickly create a launch to edit that page. |
 | `delete-aem-page` | Workflow: get-aem-page-metadata (or get-aem-page-content) → delete-aem-page. Permanently delete a page (irreversible). Requires If-Match (ETag). |
@@ -68,7 +68,7 @@ Implement runtime discovery via tools/list, handle tool-list changes (notificati
 | `get-aem-asset-import-status` | Check status of an import-aem-asset job using jobId. While the job is in progress, the response may include a suggested wait time before polling again; honor it. Success when state COMPLETED and progress matches imported. |
 | `get-aem-fragment` | Get a content fragment by UUID or DAM path. Returns current ETag + fields. |
 | `get-aem-fragment-model` | Get detailed schema for a content fragment model. Returns field definitions, types, and validation rules. Use before creating fragments. Also use before patch/delete via manage-aem-fragments-batch (target=models) to retrieve the current ETag required for If-Match. |
-| `search-aem-fragments` | Search and filter content fragments with comprehensive filtering. Preferred over list-aem-fragments when you need to filter by date, author, status, model, tags, locale, path, or full-text. |
+| `search-aem-fragments` | Search and filter content fragments with comprehensive filtering. Preferred over list-aem-fragments when you need to filter by date, author, status, model, tags, locale, path, custom metadata, or full-text. |
 | `search-aem-fragment-models` | List and search content fragment models. Call with no filters to list all models (unfiltered, paged). Use filters for refined results: folder (enabledForFolder), configuration path (configurationFolder), name, tags, status, replication status, or dates. |
 | `list-aem-fragments` | List content fragments (paged) with optional folder filtering. Also use with a launch path (from get-aem-launch) to list fragments inside a launch. |
 | `manage-aem-fragments-batch` | Unified batch tool for fragment models (create/copy/patch/delete/publish/unpublish), content fragments, and fragment tags — use this for ALL fragment-model CRUD instead of per-fragment tools. Patch/delete operations require fetching the current ETag first. |
