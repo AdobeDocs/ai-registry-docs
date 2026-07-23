@@ -87,8 +87,10 @@ present those as structured text instead.
 
 All chart types support: title (required), description, badge —
 EXCEPT "metric" (no title, use label) and "data_dashboard" (no title at all).
-badge fields: label (str), variant — MUST be exactly one of "positive"|"negative"|"info"|"neutral".
-  DO NOT use "success", "warning", "error", "danger", or any other string — validation will fail.
+badge fields: label (str), variant — MUST be exactly one of
+  "positive"|"negative"|"info"|"neutral".
+  DO NOT use "success", "warning", "error", "danger", or any other
+  string — validation will fail.
 series fields: label (str), data (list[float|None]), color (hex str, optional).
 extra="forbid" — passing any undocumented field causes a validation error.
 
@@ -99,18 +101,24 @@ Chart types and their EXACT valid fields:
 "bar"            — title, description, badge, series, x_labels, stacked (bool)
 "horizontal_bar" — title, description, badge, series, x_labels, stacked (bool)
 "pie"            — title, description, badge, series
-                   NO x_labels — segment names go in series[].label, values in series[].data[0]
+                   NO x_labels — segment names go in series[].label,
+                   values in series[].data[0]
 "donut"          — title, description, badge, series, center_label
                    NO x_labels — same as pie; center_label is optional text in hole
 "scatter"        — title, description, badge, series
                    NO x_labels
-"metric"         — label (required), value (num|str), description, trend (float -100..1000)
-                   badge: {label, variant} — variant MUST be "positive"|"negative"|"info"|"neutral" only
+"metric"         — label (required), value (num|str), description,
+                   trend (float -100..1000)
+                   badge: {label, variant} — variant MUST be
+                   "positive"|"negative"|"info"|"neutral" only
                    NOT title — use label instead
 "dashboard"      — title, charts (list of ChartItem, min 1)
-                   ChartItem = line|area|bar|horizontal_bar|pie|donut|scatter|metric ONLY
-                   NEVER put "table" inside dashboard.charts — use "data_dashboard" instead
-"table"          — title, columns (list of {label, key}), rows (list of {cells: {key: value}})
+                   ChartItem = line|area|bar|horizontal_bar|pie|donut|scatter|metric
+                   ONLY
+                   NEVER put "table" inside dashboard.charts — use
+                   "data_dashboard" instead
+"table"          — title, columns (list of {label, key}),
+                   rows (list of {cells: {key: value}})
 "data_dashboard" — description (optional), metrics (list of MetricCard),
                    charts (list of ChartItem), table (DataTable|null)
                    NOT title — data_dashboard has no title field
@@ -148,11 +156,6 @@ Edge styles: solid, dashed, dotted.
 
 Edge `source` and `target` must reference node `id` values that exist
 in the same graph. Call once per graph; each call renders one panel. |
-| `import-claude-design-from-url` | Create an AJO email template from a hosted HTML URL.
-
-The URL must point to a self-contained HTML email bundle (images and styles
-inlined). The server fetches the HTML, creates an AJO email content template,
-and returns an openable Journey Optimizer deep link. |
 | `skill__list_campaigns` | List, browse, and preview AJO campaigns. Use when asked to list, show, browse, or view the contents of email campaigns. |
 | `skill__list_journeys` | List, browse, inspect, or get details about AJO journeys — including showing a journey's flow diagram. Use when asked to list, show, browse, view, get, open, or visualize any journey. |
 | `skill__tool_reference` | Start here before any AJO workflow. Enforces Rule 0 — read the relevant skill doc before calling any tool. |

@@ -14,7 +14,7 @@ description: "AI-powered read-only access to AEM as a Cloud Service. Browse page
 **Vendor:** Adobe
 **Owner:** GRP-AEM-MCP-OWNERS
 **Repository:** _N/A_
-**Updated:** 2026-07-22
+**Updated:** 2026-07-23
 
 ---
 
