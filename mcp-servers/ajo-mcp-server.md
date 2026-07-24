@@ -14,7 +14,7 @@ description: "This MCP server exposes Adobe Journey Optimizer (AJO) tools to AI 
 **Vendor:** Adobe
 **Owner:** org-snikhil-all
 **Repository:** [https://github.com/Adobe-CJM/ajo-mcp-service](https://github.com/Adobe-CJM/ajo-mcp-service)
-**Updated:** 2026-07-22
+**Updated:** 2026-07-23
 
 ---
 
@@ -173,6 +173,8 @@ in the same graph. Call once per graph; each call renders one panel. |
 | `content__list_landing_pages` | List AJO landing pages with pagination and optional property filters. Returns stringified JSON with items and pagination links. |
 | `content__get_landing_page` | Fetch one AJO landing page structure by UUID (metadata and page ids; no rendered HTML). |
 | `content__get_landing_page_content` | Fetch rendered HTML content for one landing page primary or sub page by page UUID. |
+| `journey__list` | List AJO journeys with optional filtering and pagination. Returns PublicJourney-shaped summaries (no internal model fields). |
+| `journey__get` | Get a single AJO journey by ID, enriched with campaigns, surfaces, and rulesets. PublicJourney-shaped. |
 
 ### Prompts
 

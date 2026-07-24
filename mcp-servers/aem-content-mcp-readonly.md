@@ -14,7 +14,7 @@ description: "AI-powered read-only access to AEM as a Cloud Service. Browse page
 **Vendor:** Adobe
 **Owner:** GRP-AEM-MCP-OWNERS
 **Repository:** _N/A_
-**Updated:** 2026-07-23
+**Updated:** 2026-07-24
 
 ---
 
@@ -73,8 +73,6 @@ Implement runtime discovery via tools/list, handle tool-list changes (notificati
 | `tools_index` | Workflow: tools_index → get_tool_details (include BOTH names in workflow and tools[]). Use for advisory-only questions (including rate limiting / HTTP 429) and list ONLY tool names from the catalog. |
 | `search_tools` | Workflow: search_tools → get_tool_details (include BOTH names in workflow and tools[]). Search tools by name/description to find the right tool for a task. |
 | `get_tool_details` | Use this tool to answer questions like 'What does [tool-name] do?' or 'What inputs does [tool-name] take?' - call get_tool_details instead of calling the actual tool when the user asks about a tool's purpose or parameters. |
-| `feature-flag-listing` | List feature flags — shows each flag's LaunchDarkly base value, user override, and effective resolved value. |
-| `feature-flag-setting` | Enable, disable, or remove a feature flag override. Overrides take precedence over LaunchDarkly. |
 
 ### Prompts
 
