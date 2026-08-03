@@ -14,7 +14,7 @@ description: "AI-powered content operations for AEM as a Cloud Service. Manage p
 **Vendor:** Adobe
 **Owner:** GRP-AEM-MCP-OWNERS
 **Repository:** _N/A_
-**Updated:** 2026-07-31
+**Updated:** 2026-08-03
 
 ---
 
@@ -79,6 +79,8 @@ Implement runtime discovery via tools/list, handle tool-list changes (notificati
 | `manage-aem-fragment-versions` | Manage fragment versions. Actions: |
 | `restore-aem-fragment-version` | Restore a fragment to a previous version (overwrites current content). |
 | `manage-aem-fragment-variations` | Manage fragment variations (list, get, create, patch, delete). Use this tool for ALL variation-specific operations—not patch-aem-fragment (which patches the main fragment, not its variations). |
+| `patch-cf-variation-fields` | Set a single Content Fragment variation's field values BY NAME, without dealing with JSON Patch indices. |
+| `create-cf-variation-with-content` | Create a Content Fragment variation and populate its fields in ONE call. |
 | `resolve-aem-fragment-path` | Convert a DAM fragmentPath to fragment UUID. Only needed for get-aem-fragment or patch-aem-fragment (which require UUID). NOT needed for publish/unpublish — those accept paths directly. |
 | `update-aem-fragment-references` | Update content-fragment reference fields in a fragment after a copy operation. Given a fragment UUID and a JSON array of {oldPath, newPath} mappings, finds all fields of type 'content-fragment' whose values match an oldPath and patches them to the corresponding newPath. Use after copying a fragment and its dependencies to rewire the copy's reference fields to point at the new copies instead of the originals. |
 | `aem-fragment-operation-with-references` | Execute a fragment operation (copy, version, patch, delete, restore) on a fragment and automatically handle all references. Discovers references, performs operations in order, updates reference fields after copy, and handles deep/recursive requests. |
