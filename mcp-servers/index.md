@@ -11,6 +11,7 @@ This page lists every MCP (Model Context Protocol) server available in the Adobe
 - [Adobe Express Developer MCP Server](./adobe-express-addon-developer-mcp-server.md) — Accelerate your Adobe Express Add-on development workflow through Model Context Protocol(MCP) that seamlessly integrates with any AI-powered IDEs.
 - [Adobe Journey Optimizer MCP Server](./ajo-mcp-server.md) — This MCP server exposes Adobe Journey Optimizer (AJO) tools to AI clients, letting marketers manage campaigns, journeys, audiences, and messages through agents.
 - [Adobe Real-Time CDP MCP Server](./rtcdp-mcp.md) — Exposes Adobe Real-Time CDP capabilities as MCP tools for AI Agents.
+- [Adobe Workfront](./workfront-mcp.md) — Manage your work in Workfront
 - [AEM Cloud Manager MCP Server](./aem-cloud-manager-mcp.md) — Manage Cloud Manager programs, environments, pipelines, and repositories from your IDE. Run pipelines, debug failures, and access Cloud Manager tools via natural language—no context switching.
 - [AEM Content MCP Server](./aem-content-mcp.md) — AI-powered content operations for AEM as a Cloud Service. Manage pages and fragments from your IDE or chat app using natural language.
 - [AEM Content MCP Server (Read-Only)](./aem-content-mcp-readonly.md) — AI-powered read-only access to AEM as a Cloud Service. Browse pages, fragments, and launches from your IDE or chat app using natural language—no create, update, or delete operations.
