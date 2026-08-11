@@ -205,7 +205,7 @@ async function main() {
     });
   }
 
-  const indexPath = `${OUTPUT_DIR}/index.md`;
+  const indexPath = `mcp-servers-list/index.md`;
   await Deno.writeTextFile(indexPath, toIndex(indexEntries));
   console.log(`  Written: ${indexPath}`);
 
