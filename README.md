@@ -11,13 +11,14 @@ You can also trigger it manually via **Actions → Generate MCP Server Docs → 
 ## Structure
 
 ```
-mcp-servers/
+mcp-servers-list/
   index.md
+mcp-servers/
   aem-content-mcp.md
   adobe-analytics-mcp.md
   ...
 ```
 
-`index.md` lists every server, sorted alphabetically by title, with a link to its markdown file and a short summary.
+`mcp-servers-list/index.md` lists every server, sorted alphabetically by title, with a link to its markdown file and a short summary.
 
 Each server file starts with a YAML front matter block (`title` + `description`), followed by: About, MCP Capabilities (Tools + Prompts), Installation Steps, Accessing the MCP Server, Documentation, and Support.
