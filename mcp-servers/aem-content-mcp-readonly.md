@@ -14,7 +14,7 @@ description: "AI-powered read-only access to AEM as a Cloud Service. Browse page
 **Vendor:** Adobe
 **Owner:** GRP-AEM-MCP-OWNERS
 **Repository:** _N/A_
-**Updated:** 2026-08-24
+**Updated:** 2026-08-25
 
 ---
 
@@ -63,7 +63,7 @@ Implement runtime discovery via tools/list, handle tool-list changes (notificati
 | `search-aem-fragments` | Search and filter content fragments with comprehensive filtering. Preferred over list-aem-fragments when you need to filter by date, author, status, model, tags, locale, path, custom metadata, or full-text. |
 | `search-aem-fragment-models` | List and search content fragment models. Call with no filters to list all models (unfiltered, paged). Use filters for refined results: folder (enabledForFolder), configuration path (configurationFolder), name, tags, status, replication status, or dates. |
 | `manage-aem-fragment-versions` | Manage fragment versions. Actions: |
-| `manage-aem-fragment-variations` | Manage fragment variations (list, get, create, patch, delete). Use this tool for ALL variation-specific operations—not patch-aem-fragment (which patches the main fragment, not its variations). |
+| `manage-aem-fragment-variations` | Manage fragment variations (list, get). Use this tool for ALL variation-specific read operations—not patch-aem-fragment (which patches the main fragment, not its variations). |
 | `get-aem-launch-job-status` | Get the status of a launch job. Call this tool after starting a launch job to track its progress. If the job is still ongoing or not started, use the tool again, and keep polling until status changes. |
 | `get-aem-launch` | Get a launch by its UUID and return current ETag + launch details. |
 | `list-aem-launches` | List launches with pagination. |
