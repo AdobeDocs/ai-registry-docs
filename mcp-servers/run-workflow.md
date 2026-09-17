@@ -9,7 +9,7 @@ description: "MCP server exposing Adobe creative production workflow capabilitie
 
 **Version:** 3.4.2 | **Status:** active | **Category:** Workflow Automation | **Deployment:** remote
 
-**Tags:** `run-workflow-mcp`
+**Tags:** `firefly-creative-production`, `run-workflow`
 **Surface:** Developer, End-user
 **Vendor:** Adobe
 **Owner:** aws_aws_cent_dev_administrator, org-anmolc-all, grp-claude-ent-users
@@ -20,16 +20,11 @@ description: "MCP server exposing Adobe creative production workflow capabilitie
 
 ## About
 
-The run-workflow MCP server bridges Claude (or any MCP-compatible LLM) with Adobe's run-workflow platform running our creative production workflows. Run workflow a workflow orchestration engine that creates and runs media processing workflows using various Firefly Services and delivers activation ready assets.
+The Firefly Creative Production MCP Server bridges any MCP-compatible LLM Agent with Adobe's Firefly Creative Production for Enterprise (FFCPE) platform running our creative production workflows. 
 
-Instead of using APIs directly or Creative Production authoring UI configurator, the MCP server lets LLM tools like Claude design, execute, monitor, and publish workflows through natural language commands. The server runs in hosted mode(stateless Azure Function endpoint with in-process dispatch to avoid HTTP self-loopback). 
-Core tools cover the full workflow lifecycle: 
-upload_asset uploads files or URLs to Azure Blob Storage; 
-compose_workflow passes a natural language description to an AI graph agent that builds a validated workflow DAG and returns a session_id held in memory for two hours; run_workflow_submit submits workflows asynchronously and returns a batchId immediately; run_workflow_get_status polls for progress and retrieves output URLs on completion; cancel_workflow, inspect_run, and list_workflow_history handle the rest of the lifecycle. 
+FFCPE is a workflow orchestration engine that creates and executes multimodal media workflows using Adobe services like Photoshop, InDesign, Illustrator, Firefly etc. to deliver scaled activation ready assets.
 
-For persistence, publish_workflow registers a workflow under a stable workflowId with ready-to-use curl commands, while save_workflow_to_acp saves it to Adobe Cloud Platform so it appears in Workflow Builder for visual editing. Pre-built featured workflows cover common enterprise patterns such as retargeting, localization, and banner advertising. 
-
-This MCP server is a incredibly powerful tool to create scaled activation ready assets from the base assets immediately from a wide range of tools like claude.
+Users can discover and execute prebuilt workflows or compose new workflows using natural language commands via any Agents that integrate with these MCP tools.
 
 ---
 
@@ -133,4 +128,4 @@ The /mcp endpoint uses the same auth as all run-workflow REST endpoints.
 
 ## Support
 
-bdutt@adobe.com
+ffcpemcp@adobe.com
